@@ -1,0 +1,52 @@
+﻿@model CmsShoppingCart.Models.ViewModel.Pages.SideBarVM
+
+@{
+    ViewBag.Title = "Edit SideBar";
+}
+@if (TempData["SM"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SM"]
+    </div>
+
+}
+
+<h2>EditSideBar</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+      
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="HasSideBar">SideBar</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.body, new { @class = "form-control" } )
+                @Html.ValidationMessageFor(model => model.body, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Edit SideBar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script>
+
+        CKEDITOR.replace("body");
+    </script>
+    
+    
+    }
+
